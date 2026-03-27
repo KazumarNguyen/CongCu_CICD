@@ -38,7 +38,7 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/ngt3393-18-03:${{ github.sha }}
       - name: Triển khai lên DevOps Classroom
         run: |
-          REPO="layers/kazumarnguyen"
+          REPO="${{ secrets.DOCKERHUB_USERNAME }}/ngt3393-18-03"
           CONTAINER_PORT=80
           RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "${{ secrets.DEPLOY_URL }}?repo=$REPO&tag=latest&slot=4&container_port=$CONTAINER_PORT&strict_container_port=0")
           BODY=$(echo "$RESPONSE" | sed "$d")
